@@ -1,0 +1,11 @@
+<pre style = 'background:#DBF4F4'>
+<span><span><a href= "/manufacturer_create/">*Create New Manufacturer*</a></span>    <span><a href = "/manufacturer_update/">*Upate Existing Manufacturer*</a></span>    <span><a href= "/manufacturer_delete/">*Delete Existing Manufacturer*</a>    <span><a href = "/manufacturer_search/">Search Manufacturers</a></span>    </span><a href= "/cereal_list/">List of Cereal</a></span>    <span><a href= "/cereal_search/">Search Cereal</a></span>
+</pre>
+
+<h1 style = 'color:rgb(25,25,112)'>List of Manufacturers</br></h1>
+
+</br>
+{% for man in manufacturer %}
+    <a href="http://127.0.0.1:8000/manufacturer_detail/{{man.pk}}">{{ man }}</a>
+    </br>
+{% endfor %}

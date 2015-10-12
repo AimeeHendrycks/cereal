@@ -1,0 +1,21 @@
+<pre style = 'background:#DBF4F4'><span><span><a href= "/manufacturer_create/">*Create New Manufacturer*</a></span>    <span><a href= "/manufacturer_delete/">*Delete Existing Manufacturer*</a>    <span><a href = "/manufacturer_list/">List of Manufacturers</a></span>    <span><a href = "/manufacturer_search/">Search Manufacturers</a></span>    </span><a href= "/cereal_list/">List of Cereal</a></span>    <span><a href= "/cereal_search/">Search Cereal</a></span>
+</pre>
+
+
+
+<h1 style = 'color:rgb(25,25,112)'>Update Manufacturer</h1>
+
+<form action="/manufacturer_update_spec/" method='POST'>
+{% csrf_token %}
+
+<input type="hidden" name="man_id" value = '{{selected_man.pk}}'> 
+
+<label for="manufacturer"> Name:</label>
+<input type="text" name="manufacturer" id="manufacturer" value='{{selected_man.manufacturer}}'>
+</br> 
+
+
+<input type='submit' value='Update'>
+
+</form>
+{{created}}

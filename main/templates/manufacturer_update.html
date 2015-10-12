@@ -1,0 +1,19 @@
+<pre style = 'background:#DBF4F4'><span><span><a href= "/manufacturer_create/">*Create New Manufacturer*</a></span>    <span><a href= "/manufacturer_delete/">*Delete Existing Manufacturer*</a>    <span><a href = "/manufacturer_list/">List of Manufacturers</a></span>    <span><a href = "/manufacturer_search/">Search Manufacturers</a></span>    </span><a href= "/cereal_list/">List of Cereal</a></span>    <span><a href= "/cereal_search/">Search Cereal</a></span>
+</pre>
+
+
+
+<h1 style = 'color:rgb(25,25,112)'>Update Manufacturer</h1>
+
+<form action="/manufacturer_update_spec/" method='POST'>
+{% csrf_token %}
+
+<h5 style = "margin-bottom:-0px">Select A Manufacturer:</h5>
+<select name='man_id' id ='man' multiple>
+    {%for man in manufacturers%}
+        <option value="{{man.pk}}">{{man.manufacturer}}</option>
+    {%endfor%}
+</select>
+
+<!--Brings you to cereal specific update page -->
+<input type='submit' value='Go to Update Page'>

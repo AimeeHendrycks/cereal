@@ -1,0 +1,12 @@
+<pre style = 'background:#DBF4F4'>
+<span><a href = "/manufacturer_list/">List of Manufacturers</a></span>    <span><a href = "/manufacturer_search/">Search Manufacturers</a></span>    </span><a href= "/cereal_list/">List of Cereal</a></span>    <span><a href= "/cereal_search/">Search Cereal</a></span>
+</pre>
+<h1 style = 'color:rgb(25,25,112)'> Manufacturer Detail </h1>
+<h2 style = 'color:rgb(25,25,112)'>Name: <em>{{ man.manufacturer }}</em></h2>
+
+
+<h3>Cereals made by manufacturer:</h3>
+{% for cereal in man.cereal_set.all%}
+    <a href="http://127.0.0.1:8000/cereal_detail/{{cereal.pk}}">{{ cereal.name }}</a>
+    </br>
+{%endfor %}

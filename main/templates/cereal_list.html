@@ -1,0 +1,12 @@
+<pre style = 'background:#DBF4F4'>
+<span><span><a href= "/cereal_create/">*Create New Cereal*</a></span>    </span><a href= "/cereal_update/">*Update Existing Cereal*</a></span>    <span><a href= "/cereal_delete/">*Delete Existing Cereal*</a>    <span><a href= "/cereal_search/">Search Cereal</a></span>    <span><a href = "/manufacturer_list/">List of Manufacturers</a></span>    <span><a href = "/manufacturer_search/">Search Manufacturers</a></span>
+</pre>
+
+<h1 style = 'color:rgb(25,25,112)'>List of Cereal</br></h1>
+
+</br>
+
+{% for c in cereal %}
+    <a href="http://127.0.0.1:8000/cereal_detail/{{c.pk}}">{{ c.name }}</a>
+    </br>
+{% endfor %}

@@ -1,0 +1,21 @@
+<pre style = 'background:#DBF4F4'>
+<span><span><a href= "/manufacturer_create/">*Create New Manufacturer*</a></span>    <span><a href = "/manufacturer_update/">*Update Existing Manufacturer*</a></span>    <span><a href= "/manufacturer_delete/">*Delete Existing Manufacturer*</a>    <span><a href = "/manufacturer_list/">List of Manufacturers</a></span>    </span><a href= "/cereal_list/">List of Cereal</a></span>    <span><a href= "/cereal_search/">Search Cereal</a></span>
+</pre>
+
+<!--<pre>
+Get: {{request.GET}}
+<br>
+Post: {{request.POST}}
+<br>
+-->
+<h1 style = 'color:rgb(25,25,112)'> Search for a Manufacturer:</h1>
+<form action="/manufacturer_search/" method='GET'>
+    {%csrf_token%}
+    <input name='manufacturer' type='text'>
+</form>
+
+{% for man in manufacturers %}
+    <a href = "http://127.0.0.1:8000/manufacturer_detail/{{man.pk}}">{{man}}</a>
+    </br>
+{% endfor %}
+</pre>

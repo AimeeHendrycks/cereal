@@ -1,0 +1,19 @@
+<pre style = 'background:#DBF4F4'>
+<span><span><a href= "/cereal_create/">*Create New Cereal*</a></span>    </span><a href= "/cereal_update/">*Update Existing Cereal*</a></span>    <span><a href= "/cereal_list/">List of Cereal</a></span>    <span><a href= "/cereal_search/">Search Cereal</a></span>    <span><a href = "/manufacturer_list/">List of Manufacturers</a></span>    <span><a href = "/manufacturer_search/">Search Manufacturers</a></span>
+</pre>
+
+
+
+<h1 style = 'color:rgb(25,25,112)'>Delete Cereal</h1>
+
+<form action="/cereal_delete/" method='POST'>
+{% csrf_token %}
+
+<h5 style = "margin-bottom:-0px">Select A Cereal:</h5>
+<select name='cereal_id' id ='cereal' multiple>
+    {%for c in cereals%}
+        <option value="{{c.pk}}">{{c.name}}</option>
+    {%endfor%}
+</select>
+
+<input type='submit' value='Delete'>

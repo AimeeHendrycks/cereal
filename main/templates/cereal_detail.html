@@ -1,0 +1,30 @@
+{%extends 'base.html' %}
+{%load crispy_forms_tags %}
+{%block body %}
+{%endblock body%}
+<h1 style = 'color:rgb(25,25,112)'>Cereal Detail<h2>
+<h2 style = 'color:rgb(25,25,112)'>Name: <em>{{ cereal.name }}</em></h2>
+
+{% comment %}
+<p>Capital:{{ state.statecapital_set.all.first.name }}</p>
+<p>Population: {{ state.statecapital_set.all.first.pop }}</p>
+<p>Latitude: {{ state.statecapital_set.all.first.lat }}</p>
+<p>Longitude: {{ state.statecapital_set.all.first.lon }}</p>
+{% endcomment %}
+
+
+Manufacturer:<a href="http://127.0.0.1:8000/manufacturer_detail/{{cereal.manufacturer.pk}}">{{cereal.manufacturer}}</a></br>
+
+Type:{{cereal.cereal_type}}</br>
+Calories:{{cereal.calories}}</br>
+Protein:{{cereal.protein}}</br>
+Fat:{{cereal.fat}}</br>
+Sodium:{{cereal.sodium}}</br>
+Fiber:{{cereal.fiber}}</br>
+Carbs:{{cereal.carbs}}</br>
+Sugars:{{cereal.sugars}}</br>
+Shelf:{{cereal.shelf}}</br>
+Potassium:{{cereal.potassium}}</br>
+Vitamins and Minerals:{{cereal.vits_and_mins}}</br>
+Serving Size Weight: {{cereal.serving_size_weight}}</br>
+Cups per Serving: {{cereal.cups_per_serving}}
