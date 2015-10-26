@@ -1,12 +1,162 @@
-<pre style = 'background:#DBF4F4'>
-<span><span><a href= "/cereal_create/">*Create New Cereal*</a></span>    </span><a href= "/cereal_update/">*Update Existing Cereal*</a></span>    <span><a href= "/cereal_delete/">*Delete Existing Cereal*</a>    <span><a href= "/cereal_search/">Search Cereal</a></span>    <span><a href = "/manufacturer_list/">List of Manufacturers</a></span>    <span><a href = "/manufacturer_search/">Search Manufacturers</a></span>
-</pre>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block body %}
 
-<h1 style = 'color:rgb(25,25,112)'>List of Cereal</br></h1>
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Cereal</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
 
-</br>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/icomoon-social.css' %}">
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="{% static 'css/leaflet.css' %}" />
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/leaflet.ie.css" />
+        <![endif]-->
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+        <script src="{% static 'js/modernizr-2.6.2-respond-1.1.0.min.js' %}"></script>
+    </head>
+<!-- Page Title -->
+
+<div class="section section-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class='col-xs-6 col-sm-4 col-md-4'>
+                <h1 style='color:#89CCB1'>Cereal List</h1>
+                </div>
+                <div class='col-xs-6 col-sm-4 col-md-4'style = 'text-align:center'>
+                    <form action="/cereal_list/" method='GET'>
+                    <input name='cereal' type='text' size='15' placeholder='Search for a cereal' style=" width:150px; text-align:center">
+                    </form>
+                </div>
+                <div class = 'col-sm-3 col-sm-offset-1 col-md-3 col-md-offset-1' style='text-align:center'>
+                    <a href="/cereal_new/" class="btn btn-default btn-md" style = 'background:#89CCB1; float:left; border: black; color:white;'>Create New Cereal</a>
+                
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+        {%for c in cereals%}
+            <div class="col-md-4 col-sm-6">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <img src="{{c.cereal_pic.url}}" alt='Cereal photo' style='height:300px; width:250px'>
+                    </div>
+                    <div class="portfolio-info-fade">
+                        <ul>
+                            <li class="portfolio-project-name">{{c.name}}</li>
+                            <li class="read-more"><a href="/cereal_detail/{{c.pk}}" class="btn" style='background:#F06D7B'>Cereal Detail</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {%endfor%}
+            <!--<div class="col-md-4 col-sm-6">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <a href="page-portfolio-item.html"><img src="img/portfolio2.jpg" alt="Project Name"></a>
+                    </div>
+                    <div class="portfolio-info-fade">
+                        <ul>
+                            <li class="portfolio-project-name">Project Name</li>
+                            <li>Website design & Development</li>
+                            <li>Client: Some Client LTD</li>
+                            <li class="read-more"><a href="page-portfolio-item.html" class="btn">Read more</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <a href="page-portfolio-item.html"><img src="img/portfolio3.jpg" alt="Project Name"></a>
+                    </div>
+                    <div class="portfolio-info-fade">
+                        <ul>
+                            <li class="portfolio-project-name">Project Name</li>
+                            <li>Website design & Development</li>
+                            <li>Client: Some Client LTD</li>
+                            <li class="read-more"><a href="page-portfolio-item.html" class="btn">Read more</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <a href="page-portfolio-item.html"><img src="img/portfolio4.jpg" alt="Project Name"></a>
+                    </div>
+                    <div class="portfolio-info-fade">
+                        <ul>
+                            <li class="portfolio-project-name">Project Name</li>
+                            <li>Website design & Development</li>
+                            <li>Client: Some Client LTD</li>
+                            <li class="read-more"><a href="page-portfolio-item.html" class="btn">Read more</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <a href="page-portfolio-item.html"><img src="img/portfolio5.jpg" alt="Project Name"></a>
+                    </div>
+                    <div class="portfolio-info-fade">
+                        <ul>
+                            <li class="portfolio-project-name">Project Name</li>
+                            <li>Website design & Development</li>
+                            <li>Client: Some Client LTD</li>
+                            <li class="read-more"><a href="page-portfolio-item.html" class="btn">Read more</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <a href="page-portfolio-item.html"><img src="img/portfolio6.jpg" alt="Project Name"></a>
+                    </div>
+                    <div class="portfolio-info-fade">
+                        <ul>
+                            <li class="portfolio-project-name">Project Name</li>
+                            <li>Website design & Development</li>
+                            <li>Client: Some Client LTD</li>
+                            <li class="read-more"><a href="page-portfolio-item.html" class="btn">Read more</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </div>
+</div>
+ <!-- Javascripts -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/jquery-1.9.1.min.js"><\/script>')</script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+        <script src="{% static 'js/jquery.fitvids.js' %}"></script>
+        <script src="{% static 'js/jquery.sequence-min.js' %}"></script>
+        <script src="{% static 'js/jquery.bxslider.js' %}"></script>
+        <script src="{% static 'js/main-menu.js' %}"></script>
+        <script src="{% static 'js/template.js' %}"></script>
+
+
 
 {% for c in cereal %}
     <a href="http://127.0.0.1:8000/cereal_detail/{{c.pk}}">{{ c.name }}</a>
     </br>
 {% endfor %}
+</body>
+{% endblock body %}

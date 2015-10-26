@@ -1,7 +1,93 @@
-<pre style = 'background:#DBF4F4'>
-<span><span><a href= "/manufacturer_create/">*Create New Manufacturer*</a></span>    <span><a href = "/manufacturer_update/">*Upate Existing Manufacturer*</a></span>    <span><a href= "/manufacturer_delete/">*Delete Existing Manufacturer*</a>    <span><a href = "/manufacturer_search/">Search Manufacturers</a></span>    </span><a href= "/cereal_list/">List of Cereal</a></span>    <span><a href= "/cereal_search/">Search Cereal</a></span>
-</pre>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block body %}
 
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>mPurpose - Multipurpose Feature Rich Bootstrap Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/icomoon-social.css' %}">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="{% static 'css/leaflet.css' %}" />
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="css/leaflet.ie.css" />
+    <![endif]-->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <script src="{% static 'js/modernizr-2.6.2-respond-1.1.0.min.js' %}"></script>
+</head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+    
+
+    <!-- Page Title -->
+    <div class="section section-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                <div class='col-xs-12 col-sm-6 col-md-6'>
+                    <h1 style = 'color:#89CCB1'>Manufacturer List</h1>
+                </div>
+                <div class='col-xs-12 col-sm-6 col-md-6'>
+                    <div><a href="/man_new/" class="btn btn-default btn-md" style = 'background:#89CCB1; border: black;color:white;'>Create New Manufacturer</a></div>
+
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="container">     
+            {%for m in manufacturers%}
+            <div class="row service-wrapper-row">
+                <div class="shop-item col-xs-12">
+                    <div class="col-sm-5" style='text-align:center; margin-top:70px'>
+                        <img src="{{m.man_pic.url}}" alt='Manufacturer photo'>
+                    </div>
+                    
+                    <div class="col-sm-7" id='{{m.manufacturer}}'>
+                    </br>
+                        <h2 style= 'margin-top:10px'>{{m.manufacturer}}</h2>
+                        <span><a href="/man_edit/{{m.pk}}" class="btn btn-default btn-md" style = 'margin-left:0%; margin-top:-10px; background:#F06D7B; color:white;'>Edit Manufacturer</a></span>
+                        <span><a href="/man_remove/{{m.pk}}" class="btn btn-default btn-md" style = 'margin-left:2%; margin-top:-10px; background:#F06D7B; color:white;'>Delete Manufacturer</a></span>
+
+                        <p>
+                        <h3>Cereals made by manufacturer:</h3>
+                        <ul>
+                        {% for cereal in m.cereal_set.all%}
+                            <li><a href="http://127.0.0.1:8000/cereal_detail/{{cereal.pk}}">{{ cereal.name }}</a></li>
+                            </br>
+                        {%endfor%}
+                        </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}    
+        </div>
+    </div>
+
+    <!-- Javascripts -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.9.1.min.js"><\/script>')</script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js' %}"></script>
+    <script src="{% static 'js/jquery.fitvids.js' %}"></script>
+    <script src="{% static 'js/jquery.sequence-min.js' %}"></script>
+    <script src="{% static 'js/jquery.bxslider.js' %}"></script>
+    <script src="{% static 'js/main-menu.js' %}"></script>
+    <script src="{% static 'js/template.js' %}"></script>
+{% endblock body %}
+</body>
+</html>
 <h1 style = 'color:rgb(25,25,112)'>List of Manufacturers</br></h1>
 
 </br>

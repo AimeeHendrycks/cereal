@@ -1,11 +1,13 @@
 
 
 # Create your views here.
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from main.models import Cereal, Manufacturer
 from django.template import RequestContext
 from django.conf import settings
+from main.forms import ContactForm, CerealNewForm, ManNewForm, CerealEditForm, ManEditForm, CerealRemoveForm, ManRemoveForm
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -23,15 +25,29 @@ def base(request):
     context['cereal'] = cereal
 
     return render_to_response('base.html', context, context_instance=RequestContext(request))
-  
+
+def home(request):
+    context = {}
+    cereal = Cereal.objects.order_by('?').first()
+    manufacturer = Manufacturer.objects.order_by('?').first()
+    context['cereal'] = cereal
+    context['manufacturer'] = manufacturer
+    return render_to_response('home.html', context, context_instance=RequestContext(request))
+
+
 
 def cereal_list(request):
 
     context = {}
 
-    cereal = Cereal.objects.all()
+    cereal = request.GET.get('cereal', None)
+    
+    if cereal != None:
+        cereals = Cereal.objects.filter(name__icontains=cereal)
+    else:
+        cereals = Cereal.objects.all()
 
-    context['cereal'] = cereal
+    context['cereals'] = cereals
 
     #render_to_response(template, context dict, context_instance=RequestContext(request))
     return render_to_response('cereal_list.html', context, context_instance=RequestContext(request))
@@ -209,9 +225,9 @@ def manufacturer_list(request):
 
     context = {}
 
-    manufacturer = Manufacturer.objects.all()
+    manufacturers = Manufacturer.objects.all()
 
-    context['manufacturer'] = manufacturer
+    context['manufacturers'] = manufacturers
 
     #render_to_response(template, context dict, context_instance=RequestContext(request))
     return render_to_response('manufacturer_list.html', context, context_instance=RequestContext(request))
@@ -313,3 +329,178 @@ def manufacturer_delete(request):
     
     return render_to_response('manufacturer_delete.html', context, context_instance=RequestContext(request))
 
+def contact(request):
+    context = {}
+
+    if request.method =='POST':
+        print 'post'
+        form = ContactForm(request.POST)
+        context['form'] = form
+        if form.is_valid():
+            print 'valid'
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+
+            send_mail('CEREAL SITE MESSAGE FROM %s' % name, 
+                message, email,
+                [settings.EMAIL_HOST_USER], 
+                fail_silently=False)
+            context['message'] = "email sent"
+        else:
+            print 'bad'
+            context['message'] = form.errors
+    elif request.method == 'GET':
+        print 'get'
+        form = ContactForm()
+        context['form'] = form
+    print 'done'
+    return render_to_response('contact.html', context, context_instance=RequestContext(request))
+
+def cereal_new(request):
+    context = {}
+    form = CerealNewForm(request.POST or None)
+    context['form'] = form
+
+    if form.is_valid():
+        form.save()
+        return redirect('/cereal_list/')
+
+    return render_to_response('cereal_new.html', context, context_instance=RequestContext(request))
+def man_new(request):
+    context = {}
+    form = ManNewForm(request.POST or None)
+    context['form'] = form
+
+    if form.is_valid():
+        form.save()
+        return redirect('/manufacturer_list/')
+
+    return render_to_response('man_new.html', context, context_instance=RequestContext(request))
+def cereal_edit(request, pk):
+    context = {}
+    cereal = Cereal.objects.get(pk=pk)
+    form = CerealEditForm(request.POST or None, instance=cereal)
+    context['cereal'] = cereal
+    context['form'] = form
+
+    if form.is_valid():
+        form.save()
+
+        return redirect('/cereal_list/')
+
+    return render_to_response('cereal_edit.html', context, context_instance=RequestContext(request))
+def man_edit(request, pk):
+    context = {}
+    man = Manufacturer.objects.get(pk=pk)
+    form = ManEditForm(request.POST or None, instance=man)
+    context['man'] = man
+    context['form'] = form
+
+    if form.is_valid():
+        form.save()
+
+        return redirect('/manufacturer_list/')
+
+    return render_to_response('man_edit.html', context, context_instance=RequestContext(request))
+
+def cereal_remove(request, pk):
+    context = {}
+    cereal = Cereal.objects.get(pk=pk)
+    form = CerealRemoveForm(request.POST or None, instance=cereal)
+    context['cereal'] = cereal
+    context['form'] = form
+    if form.is_valid():
+        form.save()
+        cereal.delete()
+        return redirect('/cereal_list/')
+
+    return render_to_response('cereal_remove.html', context, context_instance=RequestContext(request))
+
+def man_remove(request, pk):
+    context = {}
+    man = Manufacturer.objects.get(pk=pk)
+    form = ManRemoveForm(request.POST or None, instance=man)
+    context['man'] = man
+    context['form'] = form
+    if form.is_valid():
+        form.save()
+        man.delete()
+        return redirect('/manufacturer_list/')
+
+    return render_to_response('man_remove.html', context, context_instance=RequestContext(request))
+
+def signup(request):
+
+    context = {}
+
+    form = UserSignUp()
+    context['form'] = form
+
+    if request.method == 'POST':
+        form = UserSignUp(request.POST)
+        if form.is_valid():
+            print form.cleaned_data
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            
+            try:
+                new_user = User.objects.create_user(username, email, password)
+                context['valid'] = "Thank You For Signing Up!"
+                new_user.save()
+                auth_user = authenticate(username=username, password=password)
+                login(request, auth_user)
+                return HttpResponseRedirect('/home/')
+
+            except Exception, e:
+                context['valid'] = "A User With That Name Already Exists"
+
+        else:
+            context['valid'] = form.errors
+
+    elif request.method == 'GET':
+        print 'GET'
+        context['valid'] = "Please Sign Up!"
+
+    return render_to_response('signup.html', context, context_instance=RequestContext(request))
+
+
+def login_view(request):
+    context = {}
+    form = UserLogin()
+    context['form'] = form
+
+    if request.method == 'POST':
+        print 'POST'
+        context['form'] = UserLogin(request.POST)
+        username = request.POST.get('username', None)
+        print username
+        password = request.POST.get('password', None)
+        print password
+
+        if username is not None and password is not None:
+            print 'if worked'
+            auth_user = authenticate(username=username, password=password)
+            print 'auth worked'
+            context['auth_user'] = auth_user
+            if auth_user is not None and auth_user.is_active:
+                print 'second if worked'
+                login(request, auth_user)
+                print 'login worked'
+                context['outcome'] = "Login Successful"
+                return HttpResponseRedirect('/home/')
+            else:
+                context['outcome'] = "Invalid User"
+        else:
+            context['outcome'] = "Please enter a User Name and/or Password"
+    else:
+        print 'GET'
+
+    return render_to_response('login.html', context, context_instance=RequestContext(request))
+
+def logout_view(request):
+
+    logout(request)
+
+    return HttpResponseRedirect('/login/')

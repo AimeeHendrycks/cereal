@@ -1,7 +1,6 @@
-<pre style = 'background:#DBF4F4'>
-<span><span><a href= "/manufacturer_update/">*Update Existing Manufacturer*</a></span>    <span><a href= "/manufacturer_delete/">*Delete Existing Manufacturer*</a>    <span><a href = "/manufacturer_list/">List of Manufacturers</a></span>    <span><a href = "/manufacturer_search/">Search Manufacturers</a></span>    </span><a href= "/cereal_list/">List of Cereal</a></span>    <span><a href= "/cereal_search/">Search Cereal</a></span>
-</pre>
-
+{%extends 'base.html'%}
+{% load staticfiles %}
+{%block body %}
 <h1 style = 'color:rgb(25,25,112)'>Create Manufacturer</h1>
 <form action="/manufacturer_create/" method='POST'>
 {% csrf_token %}
@@ -17,3 +16,4 @@
 </form>
 
 {{created}}
+{% endblock body %}

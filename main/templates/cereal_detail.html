@@ -1,7 +1,87 @@
 {%extends 'base.html' %}
-{%load crispy_forms_tags %}
+{%load staticfiles %}
 {%block body %}
-{%endblock body%}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cereal Detail</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/icomoon-social.css' %}">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="{% static 'css/leaflet.css' %}" />
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="css/leaflet.ie.css" />
+    <![endif]-->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+</head>
+<!-- Page Title -->
+<div class="section section-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 style='color:#89CCB1;'>Cereal Detail</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+        <div class="shop-item col-xs-10 col-xs-offset-1">
+            <!-- Image Column -->
+            <div class="col-sm-6">
+                <div class="portfolio-item"style='margin-top:50px'>
+                    <div class="portfolio-image">
+                        <a href="#"><img src="{{cereal.cereal_pic.url}}" alt="{{cereal.name}}"></a>
+                    </div>
+                </div>
+            </div>
+            <!-- End Image Column -->
+            <!-- Project Info Column -->
+            <div class="portfolio-item-description col-sm-6" style='margin-top:15px'>
+                <h2>{{cereal.name}}</h2>
+                <span><a href="/cereal_edit/{{cereal.pk}}" class="btn btn-default btn-md" style = 'margin-left:0%; margin-top:-25px; background:#F06D7B; color:white;'>Edit Cereal</a></span>
+                <span><a href="/cereal_remove/{{cereal.pk}}" class="btn btn-default btn-md" style = 'margin-left:2%; margin-top:-25px; background:#F06D7B; color:white;'>Remove Cereal</a></span>
+
+                </br>
+                Manufacturer: <a href="/manufacturer_list/#{{cereal.manufacturer}}"><b>{{cereal.manufacturer}}</b></a></br>
+                Type: <b>{{cereal.cereal_type}}</b></br>
+                Calories: <b>{{cereal.calories}}</b></br>
+                Protein: <b>{{cereal.protein}}</b></br>
+                Fat: <b>{{cereal.fat}}</b></br>
+                Sodium: <b>{{cereal.sodium}}</b></br>
+                Fiber: <b>{{cereal.fiber}}</b></br>
+                Carbs: <b>{{cereal.carbs}}</b></br>
+                Sugars: <b>{{cereal.sugars}}</b></br>
+                Shelf: <b>{{cereal.shelf}}</b></br>
+                Potassium: <b>{{cereal.potassium}}</b></br>
+                Vitamins and Minerals: <b>{{cereal.vits_and_mins}}</b></br>
+                Serving Size Weight: <b>{{cereal.serving_size_weight}}</b></br>
+                Cups per Serving: <b>{{cereal.cups_per_serving}}</b>
+            </div>
+            <!-- End Project Info Column -->
+        </div>
+    </div>
+</div>
+<!-- Javascripts -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+<script src="{% static 'js/jquery.fitvids.js' %}"></script>
+<script src="{% static 'js/jquery.sequence-min.js' %}"></script>
+<script src="{% static 'js/jquery.bxslider.js' %}"></script>
+<script src="{% static 'js/main-menu.js' %}"></script>
+<script src="{% static 'js/template.js' %}"></script>
+
+{% endblock body %}
 <h1 style = 'color:rgb(25,25,112)'>Cereal Detail<h2>
 <h2 style = 'color:rgb(25,25,112)'>Name: <em>{{ cereal.name }}</em></h2>
 
@@ -11,6 +91,7 @@
 <p>Latitude: {{ state.statecapital_set.all.first.lat }}</p>
 <p>Longitude: {{ state.statecapital_set.all.first.lon }}</p>
 {% endcomment %}
+
 
 
 Manufacturer:<a href="http://127.0.0.1:8000/manufacturer_detail/{{cereal.manufacturer.pk}}">{{cereal.manufacturer}}</a></br>

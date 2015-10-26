@@ -1,6 +1,6 @@
-<pre style = 'background:#DBF4F4'>
-<span><span><a href= "/cereal_create/">*Create New Cereal*</a></span>    </span><a href= "/cereal_update/">*Update Existing Cereal*</a></span>    <span><a href= "/cereal_list/">List of Cereal</a></span>    <span><a href= "/cereal_search/">Search Cereal</a></span>    <span><a href = "/manufacturer_list/">List of Manufacturers</a></span>    <span><a href = "/manufacturer_search/">Search Manufacturers</a></span>
-</pre>
+{%extends 'base.html'%}
+{% load staticfiles %}
+{%block body %}
 
 
 
@@ -17,3 +17,4 @@
 </select>
 
 <input type='submit' value='Delete'>
+{% endblock body %}

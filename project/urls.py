@@ -23,20 +23,28 @@ urlpatterns = [
 
     #url(pattern, view)
     url(r'^cereal_list/$', 'main.views.cereal_list'),
+    url(r'^cereal_new/$', 'main.views.cereal_new'),
     url(r'^cereal_detail/(?P<pk>\d+)/$', 'main.views.cereal_detail'),
     url(r'^cereal_search/$', 'main.views.cereal_search'),
     url(r'^cereal_create/$', 'main.views.cereal_create'),
     url(r'^cereal_update/$', 'main.views.cereal_update'),
     url(r'^cereal_update_spec/', 'main.views.cereal_update_spec'),
     url(r'^cereal_delete/$', 'main.views.cereal_delete'),
+    url(r'^cereal_edit/(?P<pk>\d+)/$', 'main.views.cereal_edit'),
     url(r'^manufacturer_list/$', 'main.views.manufacturer_list'),
+    url(r'^man_new/$', 'main.views.man_new'),
     url(r'^manufacturer_detail/(?P<pk>\d+)/$', 'main.views.manufacturer_detail'),
+    url(r'^man_edit/(?P<pk>\d+)/$', 'main.views.man_edit'),
     url(r'^manufacturer_search/$', 'main.views.manufacturer_search'),
     url(r'^manufacturer_create/$', 'main.views.manufacturer_create'),
     url(r'^manufacturer_update/$', 'main.views.manufacturer_update'),
     url(r'^manufacturer_update_spec/$', 'main.views.manufacturer_update_spec'),
     url(r'^manufacturer_delete/$', 'main.views.manufacturer_delete'),
     url(r'^base/$', 'main.views.base'),
+    url(r'^home/$', 'main.views.home'),
+    url(r'^contact/$', 'main.views.contact'),
+    url(r'^cereal_remove/(?P<pk>\d+)/$', 'main.views.cereal_remove'),
+    url(r'^man_remove/(?P<pk>\d+)/$', 'main.views.man_remove'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 #(.*\.txt$)

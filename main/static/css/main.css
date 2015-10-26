@@ -2,7 +2,10 @@
 	General Style
 --------------------------------------------------------------------------*/
 body {
-  background: url(../img/page-background.png);
+  background: url(../img/frooty.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
 }
 .section {
   padding: 30px 0;
@@ -730,11 +733,12 @@ a:hover {
 --------------------------------------------------------------------------*/
 .shop-item {
   position: relative;
-  background: #FFF;
+  background: #FFEFF5;
+  opacity: 0.9;
   padding-bottom: 10px;
   margin-top: 20px;
   margin-bottom: 10px;
-  border: 8px solid #FFF;
+  border: 0px solid #FFF;
   -webkit-border-radius: 5px;
   -webkit-background-clip: padding-box;
   -moz-border-radius: 5px;
@@ -1448,7 +1452,7 @@ span.color-red {
   transition: all .25s ease;
 }
 .portfolio-item:hover {
-  border: 8px solid #4f8db3;
+  border: 8px solid #F06D7B;
 }
 .portfolio-item:hover .portfolio-image img {
   position: relative;
@@ -1706,7 +1710,7 @@ span.color-red {
   background: #222;
   color: #A0A0A0;
   padding: 0 20px 10px 20px;
-  border-top: 4px solid #4f8db3;
+  border-top: 4px solid #F06D7B;
   margin-top: 20px;
   -webkit-box-shadow: 0 -1px 12px rgba(0,0,0,0.4);
   -moz-box-shadow: 0 -1px 12px rgba(0,0,0,0.4);
@@ -1897,10 +1901,11 @@ span.color-red {
   background-position: -50px 0;
 }
 #sequence > .sequence-canvas > li.bg1 {
-  background-image: url(../img/homepage-slider/slider-bg1.jpg);
+  background-image:url(../img/homepage-slider/slider-bg2.jpg);
+
 }
 #sequence > .sequence-canvas > li.bg2 {
-  background-image: url(../img/homepage-slider/slider-bg2.jpg);
+  background-image:url(../img/homepage-slider/rstripes.png);
 }
 #sequence > .sequence-canvas > li.bg3 {
   background-image: url(../img/homepage-slider/slider-bg3.jpg);
@@ -2008,7 +2013,7 @@ span.color-red {
   height: 14px;
   margin: 0 4px;
   text-indent: -999em;
-  border: 4px solid #4f8db3;
+  border: 3px solid #89CCB1;
   cursor: pointer;
   -webkit-border-radius: 30px;
   -webkit-background-clip: padding-box;
@@ -2026,7 +2031,7 @@ span.color-red {
   transition: background .5s, opacity .5s;
 }
 .sequence-pagination li.current {
-  background: #4f8db3;
+  background: #F06D7B;
   -webkit-opacity: 1;
   -moz-opacity: 1;
   opacity: 1;
@@ -2372,7 +2377,7 @@ span.color-red {
 }
 .mainmenu-wrapper {
   background-color: #FFF;
-  border-bottom: 4px solid #4f8db3;
+  border-bottom: 4px solid #F06D7B;
   z-index: 4;
 }
 .mainmenu {
@@ -2405,12 +2410,12 @@ span.color-red {
 }
 .mainmenu > ul > li > a:hover,
 .mainmenu .mainmenu-submenu-inner > li > a:hover {
-  color: #4f8db3;
+  color: #89CCB1;
   text-decoration: none;
 }
 .mainmenu > ul > li.active > a,
 .mainmenu .mainmenu-submenu-inner > li.active > a {
-  color: #4f8db3;
+  color: #999;
   font-weight: 600 !important;
 }
 .mainmenu > ul > li.mainmenu-open a,
@@ -2494,7 +2499,7 @@ span.color-red {
   }
   .mainmenu > ul > li {
     display: block;
-    border-bottom: 4px solid #4f8db3;
+    border-bottom: 4px solid #89CCB1;
   }
   .mainmenu > ul > li > a {
     display: block;
@@ -2566,7 +2571,7 @@ span.color-red {
 +	Buttons Style
 --------------------------------------------------------------------------*/
 .btn {
-  border: 1px solid #4f8db3;
+  border: 1px solid #FFF;
   -webkit-border-radius: 2px;
   -webkit-background-clip: padding-box;
   -moz-border-radius: 2px;

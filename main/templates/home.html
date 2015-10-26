@@ -1,0 +1,69 @@
+{%extends 'base.html'%}
+{% load staticfiles %}
+{%block body %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/icomoon-social.css' %}">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="{% static 'css/leaflet.css' %}" />
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="css/leaflet.ie.css" />
+    <![endif]-->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+</head>
+<!-- Homepage Slider -->
+<div class="homepage-slider">
+    <div id="sequence">
+        <ul class="sequence-canvas">
+            <!-- Slide 1 -->
+            <li class="bg2">
+                <!-- Slide Title -->
+                <h2 class="title">Cereal</h2>
+                <!-- Slide Text -->
+                <h3 class="subtitle">Learn nutrition facts about cereals of different brands!</h3>
+                <!-- Slide Image -->
+                <img class="slide-img" src="{{cereal.cereal_pic.url}}" alt="{{cereal.name}}" alt="Slide 1" style='width:200px; height:300px' />
+            </li>
+            <!-- End Slide 1 -->
+            <!-- Slide 2 -->
+            <li class="bg2">
+                <!-- Slide Title -->
+                <h2 class="title">Manufacturers</h2>
+                <!-- Slide Text -->
+                <h3 class="subtitle">View the cereals made by different manufacturers!</h3>
+                <!-- Slide Image -->
+                <img class="slide-img" src="{{manufacturer.man_pic.url}}" alt="{{cereal.name}}" style='margin:30px; width:200px; height:300px'>
+            </li>
+            <!-- End Slide 2 -->
+        </ul>
+        <div class="sequence-pagination-wrapper">
+            <ul class="sequence-pagination">
+                <li>1</li>
+                <li>2</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Homepage Slider -->
+
+<!-- Javascripts -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+<script src="{% static 'js/jquery.fitvids.js' %}"></script>
+<script src="{% static 'js/jquery.sequence-min.js' %}"></script>
+<script src="{% static 'js/jquery.bxslider.js' %}"></script>
+<script src="{% static 'js/main-menu.js' %}"></script>
+<script src="{% static 'js/template.js' %}"></script>
+
+{% endblock body %}

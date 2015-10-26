@@ -28,11 +28,9 @@ reader = csv.DictReader(csv_file)
 
 for row in reader:
     new_man, created = Manufacturer.objects.get_or_create(manufacturer=row['Manufacturer'])
-    print new_man.manufacturer
-
     new_man.save()
 
-    new_cereal, created = Cereal.objects.get_or_create(name=row['Cereal Name'])
+    new_cereal, created = Cereal.objects.get_or_create(name=row['Cereal Name'].replace('_', ' '))
     print new_cereal.name
     new_cereal.manufacturer = new_man
     print new_cereal.manufacturer
