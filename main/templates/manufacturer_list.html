@@ -36,10 +36,10 @@
                         <span><a href="/man_remove/{{m.pk}}" class="btn btn-default btn-md" style = 'margin-left:2%; margin-top:px; background:#F06D7B; color:white;'>Delete Manufacturer</a></span>
                         </div>
                         <p>
-                        <h3>&nbsp&nbspCereals made by manufacturer:</h3>
+                        <h3>Cereals made by manufacturer:</h3>
                         <ul>
                         {% for cereal in m.cereal_set.all%}
-                            <li><a href="http://127.0.0.1:8000/cereal_detail/{{cereal.pk}}">{{ cereal.name }}</a></li>
+                            <li><a href="/cereal_detail/{{cereal.pk}}">{{ cereal.name }}</a></li>
                             </br>
                         {%endfor%}
                         </ul>
