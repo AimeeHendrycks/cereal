@@ -4,7 +4,7 @@ from django.db import models
 class Manufacturer(models.Model):
 
     manufacturer = models.CharField(max_length=255, null=True, blank=True)
-    man_pic = models.ImageField(upload_to='man_pic', null=True, blank=True)
+    man_pic = models.CharField(max_length=255, null=True, blank=True)
 
     def __unicode__(self):
         return '%s' % self.manufacturer
@@ -25,7 +25,7 @@ class Cereal(models.Model):
     vits_and_mins = models.FloatField(null=True, blank=True)
     serving_size_weight = models.FloatField(null=True, blank=True)
     cups_per_serving = models.FloatField(null=True, blank=True)
-    cereal_pic = models.ImageField(upload_to='cereal_pic', null=True, blank=True)
+    cereal_pic = models.CharField(max_length=255, null=True, blank=True)
 
     def __unicode__(self):
         return '%s' % self.name

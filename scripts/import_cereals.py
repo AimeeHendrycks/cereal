@@ -28,6 +28,8 @@ reader = csv.DictReader(csv_file)
 
 for row in reader:
     new_man, created = Manufacturer.objects.get_or_create(manufacturer=row['Manufacturer'])
+    new_man.man_pic = "/media/man_pic/"+new_man.manufacturer.replace(' ', '')+".png"
+    print new_man.man_pic
     new_man.save()
 
     new_cereal, created = Cereal.objects.get_or_create(name=row['Cereal Name'].replace('_', ' '))
@@ -48,6 +50,8 @@ for row in reader:
     new_cereal.vits_and_mins = row['Vitamins and Minerals']
     new_cereal.serving_size_weight = row['Serving Size Weight']
     new_cereal.cups_per_serving = row['Cups per Serving']
+    new_cereal.cereal_pic = "/media/cereal_pic/"+new_cereal.name.replace(' ', '')+".jpg"
+    print new_cereal.cereal_pic
     new_cereal.save()
 
 csv_file.close()
