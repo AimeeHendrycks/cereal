@@ -50,7 +50,7 @@ for row in reader:
     new_cereal.vits_and_mins = row['Vitamins and Minerals']
     new_cereal.serving_size_weight = row['Serving Size Weight']
     new_cereal.cups_per_serving = row['Cups per Serving']
-    new_cereal.cereal_pic = "/media/cereal_pic/"+new_cereal.name.replace(' ', '')+".jpg"
+    new_cereal.cereal_pic = "/media/cereal_pic/"+new_cereal.name.replace(' ', '').replace('%', '')+".jpg"
     print new_cereal.cereal_pic
     new_cereal.save()
 
