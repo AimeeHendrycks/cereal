@@ -31,11 +31,12 @@
                     <div class="col-sm-7" id='{{m.manufacturer}}'>
                     </br>
                         <h2 style= 'margin-top:10px'>{{m.manufacturer}}</h2>
-                        <span><a href="/man_edit/{{m.pk}}" class="btn btn-default btn-md" style = 'margin-left:0%; margin-top:-10px; background:#F06D7B; color:white;'>Edit Manufacturer</a></span>
-                        <span><a href="/man_remove/{{m.pk}}" class="btn btn-default btn-md" style = 'margin-left:2%; margin-top:-10px; background:#F06D7B; color:white;'>Delete Manufacturer</a></span>
-
+                        <div>
+                        <span><a href="/man_edit/{{m.pk}}" class="btn btn-default btn-md" style = 'margin-left:2%; margin-top:px; background:#F06D7B; color:white;'>Edit Manufacturer</a></span>
+                        <span><a href="/man_remove/{{m.pk}}" class="btn btn-default btn-md" style = 'margin-left:2%; margin-top:px; background:#F06D7B; color:white;'>Delete Manufacturer</a></span>
+                        </div>
                         <p>
-                        <h3>Cereals made by manufacturer:</h3>
+                        <h3>&nbsp&nbspCereals made by manufacturer:</h3>
                         <ul>
                         {% for cereal in m.cereal_set.all%}
                             <li><a href="http://127.0.0.1:8000/cereal_detail/{{cereal.pk}}">{{ cereal.name }}</a></li>
