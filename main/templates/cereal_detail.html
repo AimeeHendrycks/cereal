@@ -15,11 +15,11 @@
 
 <div class="section">
     <div class="container">
-        <div class="row">
-        <div class="shop-item col-xs-10 col-xs-offset-1">
+        <div class="row service-wrapper-row">
+        <div class="shop-item col-xs-10 col-xs-offset-1" style='margin-top:50px; margin-bottom:50px'>
             <!-- Image Column -->
             <div class="col-sm-6">
-                <div class="portfolio-item"style='margin-top:50px'>
+                <div class="portfolio-item" style='margin-top:50px'>
                     <div class="portfolio-image">
                         <a href="#"><img src="{{cereal.cereal_pic}}" alt="{{cereal.name}}"></a>
                     </div>
@@ -27,7 +27,7 @@
             </div>
             <!-- End Image Column -->
             <!-- Project Info Column -->
-            <div class="portfolio-item-description col-sm-6" style='margin-top:15px'>
+            <div class="portfolio-item-description col-sm-6" style='margin-top:20px'>
                 <h2>{{cereal.name}}</h2>
                 <span><a href="/cereal_edit/{{cereal.pk}}" class="btn btn-default btn-md" style = 'margin-left:0%; margin-top:-25px; background:#F06D7B; color:white;'>Edit Cereal</a></span>
                 <span><a href="/cereal_remove/{{cereal.pk}}" class="btn btn-default btn-md" style = 'margin-left:2%; margin-top:-25px; background:#F06D7B; color:white;'>Remove Cereal</a></span>
@@ -47,11 +47,12 @@
                 Vitamins and Minerals: <b>{{cereal.vits_and_mins}}</b></br>
                 Serving Size Weight: <b>{{cereal.serving_size_weight}}</b></br>
                 Cups per Serving: <b>{{cereal.cups_per_serving}}</b>
+                </br>
+                </br>
             </div>
             <!-- End Project Info Column -->
         </div>
+        </div>
     </div>
 </div>
-
-
 {% endblock body %}
